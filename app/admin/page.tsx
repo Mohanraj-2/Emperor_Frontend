@@ -123,11 +123,11 @@ export default function AdminPage() {
   return (
     <div className="min-h-screen bg-gray-50 flex">
       {/* Sidebar */}
-      <aside className="w-56 bg-gray-900 flex flex-col flex-shrink-0 min-h-screen">
-        <div className="p-6 border-b border-gray-800">
+      <aside className="w-56 bg-navy-800 flex flex-col flex-shrink-0 min-h-screen">
+        <div className="p-6 border-b border-navy-700">
           <Link href="/" className="flex items-center gap-2">
             <div className="w-8 h-8 bg-pink-400 rounded-full flex items-center justify-center">
-              <Crown className="w-4 h-4 text-gray-900" />
+              <Crown className="w-4 h-4 text-navy-800" />
             </div>
             <div>
               <div className="font-playfair text-white font-bold text-sm">EMPIRE</div>
@@ -142,8 +142,8 @@ export default function AdminPage() {
               onClick={() => setActiveTab(id)}
               className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl text-left transition-colors ${
                 activeTab === id
-                  ? 'bg-pink-400 text-gray-900'
-                  : 'text-gray-400 hover:bg-gray-800 hover:text-white'
+                  ? 'bg-pink-400 text-navy-800'
+                  : 'text-navy-300 hover:bg-navy-700 hover:text-white'
               }`}
             >
               <Icon className="w-4 h-4" />
@@ -151,8 +151,8 @@ export default function AdminPage() {
             </button>
           ))}
         </nav>
-        <div className="p-4 border-t border-gray-800">
-          <Link href="/" className="flex items-center gap-3 px-4 py-3 text-gray-400 hover:text-white transition-colors">
+        <div className="p-4 border-t border-navy-700">
+          <Link href="/" className="flex items-center gap-3 px-4 py-3 text-navy-300 hover:text-white transition-colors">
             <Settings className="w-4 h-4" />
             <span className="font-poppins text-sm">Back to Store</span>
           </Link>
@@ -163,21 +163,21 @@ export default function AdminPage() {
       <main className="flex-1 overflow-auto">
         {/* Top bar */}
         <div className="bg-white border-b border-gray-200 px-8 py-4 flex items-center justify-between">
-          <h1 className="font-poppins font-bold text-gray-900 text-lg capitalize">
+          <h1 className="font-poppins font-bold text-navy-800 text-lg capitalize">
             {activeTab === 'overview' ? 'Dashboard Overview' : activeTab}
           </h1>
           <div className="flex items-center gap-2">
-            <div className="w-8 h-8 bg-gray-900 rounded-full flex items-center justify-center">
+            <div className="w-8 h-8 bg-navy-800 rounded-full flex items-center justify-center">
               <Crown className="w-4 h-4 text-pink-400" />
             </div>
-            <span className="font-poppins text-sm font-medium text-gray-900">Admin</span>
+            <span className="font-poppins text-sm font-medium text-navy-800">Admin</span>
           </div>
         </div>
 
         <div className="p-8">
           {loading ? (
             <div className="flex items-center justify-center py-20">
-              <Loader2 className="w-8 h-8 animate-spin text-gray-900" />
+              <Loader2 className="w-8 h-8 animate-spin text-navy-800" />
             </div>
           ) : (
             <>
@@ -193,7 +193,7 @@ export default function AdminPage() {
                             <Icon className="w-4 h-4" />
                           </div>
                         </div>
-                        <div className="font-playfair text-2xl font-bold text-gray-900">{value}</div>
+                        <div className="font-playfair text-2xl font-bold text-navy-800">{value}</div>
                       </div>
                     ))}
                   </div>
@@ -201,7 +201,7 @@ export default function AdminPage() {
                   {/* Recent Orders */}
                   <div className="bg-white rounded-2xl shadow-card p-6 mb-6">
                     <div className="flex items-center justify-between mb-5">
-                      <h3 className="font-poppins font-semibold text-gray-900">Recent Orders</h3>
+                      <h3 className="font-poppins font-semibold text-navy-800">Recent Orders</h3>
                       <button onClick={() => setActiveTab('orders')} className="text-xs text-pink-500 font-poppins hover:underline">
                         View all →
                       </button>
@@ -218,8 +218,8 @@ export default function AdminPage() {
                         <tbody>
                           {orders.slice(0, 5).map((order) => (
                             <tr key={order.id} className="border-b border-gray-50">
-                              <td className="py-3 font-poppins text-xs font-semibold text-gray-900">{order.order_number}</td>
-                              <td className="py-3 font-poppins text-xs text-gray-900">₹{order.total?.toLocaleString('en-IN')}</td>
+                              <td className="py-3 font-poppins text-xs font-semibold text-navy-800">{order.order_number}</td>
+                              <td className="py-3 font-poppins text-xs text-navy-800">₹{order.total?.toLocaleString('en-IN')}</td>
                               <td className="py-3">
                                 <span className={`px-2 py-1 rounded-full text-[10px] font-poppins font-semibold border ${STATUS_COLORS[order.status] || STATUS_COLORS['pending']}`}>
                                   {order.status}
@@ -240,7 +240,7 @@ export default function AdminPage() {
 
                   {/* Top Products */}
                   <div className="bg-white rounded-2xl shadow-card p-6">
-                    <h3 className="font-poppins font-semibold text-gray-900 mb-5">Products Overview</h3>
+                    <h3 className="font-poppins font-semibold text-navy-800 mb-5">Products Overview</h3>
                     <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
                       {products.slice(0, 6).map((p) => (
                         <div key={p.id} className="flex items-center gap-3 p-3 border border-gray-100 rounded-xl">
@@ -248,7 +248,7 @@ export default function AdminPage() {
                             <img src={p.image_url || ''} alt={p.name} className="w-full h-full object-cover" />
                           </div>
                           <div className="min-w-0 flex-1">
-                            <p className="font-poppins text-xs font-medium text-gray-900 truncate">{p.name}</p>
+                            <p className="font-poppins text-xs font-medium text-navy-800 truncate">{p.name}</p>
                             <p className="font-poppins text-xs text-pink-500 font-bold">₹{p.price}</p>
                           </div>
                         </div>
@@ -268,7 +268,7 @@ export default function AdminPage() {
                         value={productSearch}
                         onChange={(e) => setProductSearch(e.target.value)}
                         placeholder="Search products..."
-                        className="w-full pl-10 pr-4 py-2.5 border border-gray-200 rounded-full text-sm font-poppins outline-none focus:border-gray-600"
+                        className="w-full pl-10 pr-4 py-2.5 border border-gray-200 rounded-full text-sm font-poppins outline-none focus:border-navy-400"
                       />
                     </div>
                     <span className="font-poppins text-xs text-gray-500">{filteredProducts.length} products</span>
@@ -291,14 +291,14 @@ export default function AdminPage() {
                                 <div className="w-10 h-12 rounded-lg overflow-hidden bg-gray-100 flex-shrink-0">
                                   <img src={p.image_url || ''} alt={p.name} className="w-full h-full object-cover" />
                                 </div>
-                                <span className="font-poppins text-xs font-medium text-gray-900">{p.name}</span>
+                                <span className="font-poppins text-xs font-medium text-navy-800">{p.name}</span>
                               </div>
                             </td>
                             <td className="px-5 py-4">
                               <span className="font-poppins text-xs text-gray-500">{(p as any).categories?.name || '—'}</span>
                             </td>
                             <td className="px-5 py-4">
-                              <span className="font-poppins text-xs font-semibold text-gray-900">₹{p.price}</span>
+                              <span className="font-poppins text-xs font-semibold text-navy-800">₹{p.price}</span>
                             </td>
                             <td className="px-5 py-4">
                               <button
@@ -323,11 +323,11 @@ export default function AdminPage() {
                               <div className="flex items-center gap-2">
                                 <button
                                   onClick={() => setEditingProduct(p)}
-                                  className="w-7 h-7 rounded-lg border border-gray-200 flex items-center justify-center hover:border-gray-600 transition-colors"
+                                  className="w-7 h-7 rounded-lg border border-gray-200 flex items-center justify-center hover:border-navy-400 transition-colors"
                                 >
                                   <Edit2 className="w-3 h-3 text-gray-400" />
                                 </button>
-                                <Link href={`/shop/${p.slug}`} target="_blank" className="w-7 h-7 rounded-lg border border-gray-200 flex items-center justify-center hover:border-gray-600 transition-colors">
+                                <Link href={`/shop/${p.slug}`} target="_blank" className="w-7 h-7 rounded-lg border border-gray-200 flex items-center justify-center hover:border-navy-400 transition-colors">
                                   <Eye className="w-3 h-3 text-gray-400" />
                                 </Link>
                               </div>
@@ -355,9 +355,9 @@ export default function AdminPage() {
                       <tbody>
                         {orders.map((order) => (
                           <tr key={order.id} className="border-b border-gray-50 hover:bg-gray-50/50 transition-colors">
-                            <td className="px-5 py-4 font-poppins text-xs font-bold text-gray-900">{order.order_number}</td>
+                            <td className="px-5 py-4 font-poppins text-xs font-bold text-navy-800">{order.order_number}</td>
                             <td className="px-5 py-4 font-poppins text-xs text-gray-500">{(order.order_items || []).length} items</td>
-                            <td className="px-5 py-4 font-poppins text-xs font-semibold text-gray-900">₹{order.total?.toLocaleString('en-IN')}</td>
+                            <td className="px-5 py-4 font-poppins text-xs font-semibold text-navy-800">₹{order.total?.toLocaleString('en-IN')}</td>
                             <td className="px-5 py-4 font-poppins text-xs text-gray-500 capitalize">{order.payment_method || '—'}</td>
                             <td className="px-5 py-4">
                               <span className={`px-2.5 py-1 rounded-full text-[10px] font-poppins font-semibold border ${STATUS_COLORS[order.status] || STATUS_COLORS['pending']}`}>
@@ -371,7 +371,7 @@ export default function AdminPage() {
                               <select
                                 value={order.status}
                                 onChange={(e) => updateOrderStatus(order.id, e.target.value)}
-                                className="border border-gray-200 rounded-lg px-2 py-1 text-xs font-poppins outline-none text-gray-900 cursor-pointer"
+                                className="border border-gray-200 rounded-lg px-2 py-1 text-xs font-poppins outline-none text-navy-800 cursor-pointer"
                               >
                                 {['pending', 'confirmed', 'processing', 'shipped', 'delivered', 'cancelled'].map((s) => (
                                   <option key={s} value={s}>{s}</option>
@@ -400,7 +400,7 @@ export default function AdminPage() {
                         )}
                       </div>
                       <div className="p-4">
-                        <h3 className="font-poppins font-semibold text-gray-900 text-sm">{cat.name}</h3>
+                        <h3 className="font-poppins font-semibold text-navy-800 text-sm">{cat.name}</h3>
                         <p className="font-poppins text-xs text-gray-400 mt-1 line-clamp-2">{cat.description}</p>
                         <Link href={`/shop?category=${cat.slug}`} target="_blank" className="mt-3 text-xs font-poppins text-pink-500 hover:underline flex items-center gap-1">
                           View Products →
@@ -436,7 +436,7 @@ export default function AdminPage() {
         <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4">
           <div className="bg-white rounded-3xl shadow-2xl p-6 w-full max-w-lg">
             <div className="flex items-center justify-between mb-5">
-              <h3 className="font-playfair text-xl font-bold text-gray-900">Edit Product</h3>
+              <h3 className="font-playfair text-xl font-bold text-navy-800">Edit Product</h3>
               <button onClick={() => setEditingProduct(null)} className="text-gray-400 hover:text-gray-600">
                 <X className="w-5 h-5" />
               </button>
@@ -445,24 +445,24 @@ export default function AdminPage() {
               <div>
                 <label className="font-poppins text-xs text-gray-500 mb-1.5 block">Name</label>
                 <input value={editingProduct.name} onChange={(e) => setEditingProduct({ ...editingProduct, name: e.target.value })}
-                  className="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm font-poppins outline-none focus:border-gray-600" />
+                  className="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm font-poppins outline-none focus:border-navy-400" />
               </div>
               <div className="grid grid-cols-2 gap-4">
                 <div>
                   <label className="font-poppins text-xs text-gray-500 mb-1.5 block">Price (₹)</label>
                   <input type="number" value={editingProduct.price} onChange={(e) => setEditingProduct({ ...editingProduct, price: Number(e.target.value) })}
-                    className="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm font-poppins outline-none focus:border-gray-600" />
+                    className="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm font-poppins outline-none focus:border-navy-400" />
                 </div>
                 <div>
                   <label className="font-poppins text-xs text-gray-500 mb-1.5 block">Original Price (₹)</label>
                   <input type="number" value={editingProduct.original_price || ''} onChange={(e) => setEditingProduct({ ...editingProduct, original_price: Number(e.target.value) || null })}
-                    className="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm font-poppins outline-none focus:border-gray-600" />
+                    className="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm font-poppins outline-none focus:border-navy-400" />
                 </div>
               </div>
               <div>
                 <label className="font-poppins text-xs text-gray-500 mb-1.5 block">Badge</label>
                 <select value={editingProduct.badge || ''} onChange={(e) => setEditingProduct({ ...editingProduct, badge: e.target.value || null })}
-                  className="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm font-poppins outline-none focus:border-gray-600">
+                  className="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm font-poppins outline-none focus:border-navy-400">
                   <option value="">None</option>
                   <option value="NEW">NEW</option>
                   <option value="SALE">SALE</option>
@@ -478,7 +478,7 @@ export default function AdminPage() {
                   <label key={key} className="flex items-center gap-2 cursor-pointer">
                     <input type="checkbox" checked={!!(editingProduct as any)[key]}
                       onChange={(e) => setEditingProduct({ ...editingProduct, [key]: e.target.checked } as any)}
-                      className="accent-gray-900" />
+                      className="accent-navy-800" />
                     <span className="font-poppins text-xs text-gray-600">{label}</span>
                   </label>
                 ))}
@@ -508,7 +508,7 @@ function CouponRows() {
     <tbody>
       {coupons.map((c) => (
         <tr key={c.id} className="border-b border-gray-50 hover:bg-gray-50/50">
-          <td className="px-5 py-4 font-poppins text-xs font-bold text-gray-900 font-mono">{c.code}</td>
+          <td className="px-5 py-4 font-poppins text-xs font-bold text-navy-800 font-mono">{c.code}</td>
           <td className="px-5 py-4 font-poppins text-xs text-gray-500 capitalize">{c.discount_type}</td>
           <td className="px-5 py-4 font-poppins text-xs font-semibold text-green-600">
             {c.discount_type === 'percentage' ? `${c.discount_value}%` : `₹${c.discount_value}`}

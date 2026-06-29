@@ -3,8 +3,8 @@ import { useState, useEffect } from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { supabase } from '@/lib/supabase';
-import { useAuth } from '@/lib/authContext';
-import { useWishlist } from '@/lib/wishlistContext';
+import { useAuthStore } from '@/store/useAuthStore';
+import { useWishlistStore } from '@/store/useWishlistStore';
 import { Order } from '@/lib/types';
 import {
   User,
@@ -42,8 +42,8 @@ export default function DashboardPage() {
   const [activeTab, setActiveTab] = useState('profile');
   const [orders, setOrders] = useState<Order[]>([]);
   const [ordersLoading, setOrdersLoading] = useState(false);
-  const { user, signOut } = useAuth();
-  const { items: wishlistItems } = useWishlist();
+  const { user, signOut } = useAuthStore();
+  const { items: wishlistItems } = useWishlistStore();
   const router = useRouter();
 
   useEffect(() => {
@@ -79,16 +79,16 @@ export default function DashboardPage() {
       <Navbar />
 
       {/* Header */}
-      <div className="bg-gray-900 py-10">
+      <div className="bg-navy-800 py-10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <div className="flex items-center gap-4">
             <div className="w-16 h-16 bg-pink-400 rounded-full flex items-center justify-center">
-              <User className="w-8 h-8 text-gray-900" />
+              <User className="w-8 h-8 text-navy-800" />
             </div>
             <div>
-              <p className="font-poppins text-gray-400 text-sm">Welcome back,</p>
+              <p className="font-poppins text-navy-300 text-sm">Welcome back,</p>
               <h1 className="font-playfair text-2xl font-bold text-white">{userName}</h1>
-              <p className="font-poppins text-gray-400 text-xs mt-0.5">{user?.email}</p>
+              <p className="font-poppins text-navy-300 text-xs mt-0.5">{user?.email}</p>
             </div>
             <div className="ml-auto hidden sm:flex items-center gap-2 bg-pink-400/20 rounded-full px-4 py-2">
               <Crown className="w-4 h-4 text-pink-400" />
@@ -109,7 +109,7 @@ export default function DashboardPage() {
                   onClick={() => setActiveTab(id)}
                   className={`w-full flex items-center justify-between px-4 py-3 rounded-xl transition-colors ${
                     activeTab === id
-                      ? 'bg-gray-900 text-white'
+                      ? 'bg-navy-800 text-white'
                       : 'text-gray-600 hover:bg-gray-50'
                   }`}
                 >
@@ -135,7 +135,7 @@ export default function DashboardPage() {
             {/* Profile Tab */}
             {activeTab === 'profile' && (
               <div className="bg-white rounded-2xl shadow-card p-6">
-                <h2 className="font-poppins font-semibold text-gray-900 text-base mb-6">Profile Information</h2>
+                <h2 className="font-poppins font-semibold text-navy-800 text-base mb-6">Profile Information</h2>
                 <div className="grid sm:grid-cols-2 gap-4">
                   {[
                     { label: 'Full Name', value: user?.user_metadata?.full_name || 'Not set' },
@@ -145,7 +145,7 @@ export default function DashboardPage() {
                   ].map(({ label, value }) => (
                     <div key={label} className="border border-gray-100 rounded-xl p-4">
                       <div className="font-poppins text-xs text-gray-400 mb-1">{label}</div>
-                      <div className="font-poppins font-medium text-gray-900 text-sm">{value}</div>
+                      <div className="font-poppins font-medium text-navy-800 text-sm">{value}</div>
                     </div>
                   ))}
                 </div>
@@ -153,7 +153,7 @@ export default function DashboardPage() {
                   <div className="flex items-center gap-3">
                     <Crown className="w-5 h-5 text-pink-500" />
                     <div>
-                      <div className="font-poppins font-semibold text-gray-900 text-sm">Empire Loyalty Program</div>
+                      <div className="font-poppins font-semibold text-navy-800 text-sm">Empire Loyalty Program</div>
                       <div className="font-poppins text-xs text-gray-500">Earn points on every purchase • Exclusive member benefits</div>
                     </div>
                   </div>
@@ -164,7 +164,7 @@ export default function DashboardPage() {
             {/* Orders Tab */}
             {activeTab === 'orders' && (
               <div className="bg-white rounded-2xl shadow-card p-6">
-                <h2 className="font-poppins font-semibold text-gray-900 text-base mb-6">Order History</h2>
+                <h2 className="font-poppins font-semibold text-navy-800 text-base mb-6">Order History</h2>
                 {ordersLoading ? (
                   <div className="space-y-4">
                     {[1, 2, 3].map((i) => (
@@ -188,7 +188,7 @@ export default function DashboardPage() {
                         <div key={order.id} className="border border-gray-100 rounded-2xl p-5">
                           <div className="flex items-center justify-between mb-3">
                             <div>
-                              <span className="font-poppins font-bold text-gray-900 text-sm">#{order.order_number}</span>
+                              <span className="font-poppins font-bold text-navy-800 text-sm">#{order.order_number}</span>
                               <span className="font-poppins text-xs text-gray-400 ml-3">
                                 {new Date(order.created_at).toLocaleDateString('en-IN')}
                               </span>
@@ -213,7 +213,7 @@ export default function DashboardPage() {
                             </div>
                           )}
                           <div className="flex items-center justify-between">
-                            <span className="font-poppins font-bold text-gray-900">₹{order.total.toLocaleString('en-IN')}</span>
+                            <span className="font-poppins font-bold text-navy-800">₹{order.total.toLocaleString('en-IN')}</span>
                             <span className="font-poppins text-xs text-pink-500 capitalize">{order.payment_method}</span>
                           </div>
                         </div>
@@ -227,7 +227,7 @@ export default function DashboardPage() {
             {/* Wishlist Tab */}
             {activeTab === 'wishlist' && (
               <div className="bg-white rounded-2xl shadow-card p-6">
-                <h2 className="font-poppins font-semibold text-gray-900 text-base mb-6">
+                <h2 className="font-poppins font-semibold text-navy-800 text-base mb-6">
                   My Wishlist ({wishlistItems.length})
                 </h2>
                 {wishlistItems.length === 0 ? (
@@ -246,8 +246,8 @@ export default function DashboardPage() {
                           <img src={p.image_url || ''} alt={p.name} className="w-full h-full object-cover" />
                         </div>
                         <div className="p-3">
-                          <p className="font-poppins text-xs font-medium text-gray-900 truncate">{p.name}</p>
-                          <p className="font-poppins text-sm font-bold text-gray-900 mt-1">₹{p.price.toLocaleString('en-IN')}</p>
+                          <p className="font-poppins text-xs font-medium text-navy-800 truncate">{p.name}</p>
+                          <p className="font-poppins text-sm font-bold text-navy-800 mt-1">₹{p.price.toLocaleString('en-IN')}</p>
                         </div>
                       </Link>
                     ))}
@@ -260,7 +260,7 @@ export default function DashboardPage() {
             {activeTab === 'addresses' && (
               <div className="bg-white rounded-2xl shadow-card p-6">
                 <div className="flex items-center justify-between mb-6">
-                  <h2 className="font-poppins font-semibold text-gray-900 text-base">Saved Addresses</h2>
+                  <h2 className="font-poppins font-semibold text-navy-800 text-base">Saved Addresses</h2>
                   <button className="btn-navy text-xs px-4 py-2.5 rounded-full">+ Add Address</button>
                 </div>
                 <div className="text-center py-12">

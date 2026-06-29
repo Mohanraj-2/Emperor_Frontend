@@ -81,15 +81,15 @@ export default function ShopPage() {
       <Navbar />
 
       {/* Page header */}
-      <div className="bg-gray-900 py-12">
+      <div className="bg-navy-800 py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          <nav className="font-poppins text-xs text-gray-400 mb-3">
+          <nav className="font-poppins text-xs text-navy-300 mb-3">
             Home &rsaquo; Shop {selectedCategory && <>&rsaquo; <span className="capitalize">{selectedCategory}</span></>}
           </nav>
           <h1 className="font-playfair text-4xl font-bold text-white">
             {selectedCategory ? <span className="capitalize">{selectedCategory}</span> : 'All Products'}
           </h1>
-          <p className="font-poppins text-gray-300 text-sm mt-2">Showing {total} products</p>
+          <p className="font-poppins text-navy-200 text-sm mt-2">Showing {total} products</p>
         </div>
       </div>
 
@@ -102,13 +102,13 @@ export default function ShopPage() {
               value={search}
               onChange={(e) => { setSearch(e.target.value); setPage(1); }}
               placeholder="Search products..."
-              className="w-full pl-10 pr-4 py-2.5 border border-gray-200 rounded-full text-sm font-poppins outline-none focus:border-pink-400 text-gray-800"
+              className="w-full pl-10 pr-4 py-2.5 border border-gray-200 rounded-full text-sm font-poppins outline-none focus:border-navy-400 text-gray-800"
             />
           </div>
 
           <button
             onClick={() => setFiltersOpen(!filtersOpen)}
-            className="flex items-center gap-2 border border-gray-200 rounded-full px-4 py-2.5 text-sm font-poppins font-medium text-gray-900 hover:border-pink-400 transition-colors"
+            className="flex items-center gap-2 border border-gray-200 rounded-full px-4 py-2.5 text-sm font-poppins font-medium text-navy-800 hover:border-navy-400 transition-colors"
           >
             <SlidersHorizontal className="w-4 h-4" />
             Filters
@@ -119,7 +119,7 @@ export default function ShopPage() {
             <select
               value={sortBy}
               onChange={(e) => { setSortBy(e.target.value); setPage(1); }}
-              className="border border-gray-200 rounded-full px-3 py-2 text-sm font-poppins outline-none text-gray-900 cursor-pointer"
+              className="border border-gray-200 rounded-full px-3 py-2 text-sm font-poppins outline-none text-navy-800 cursor-pointer"
             >
               {SORT_OPTIONS.map((o) => (
                 <option key={o.value} value={o.value}>{o.label}</option>
@@ -130,13 +130,13 @@ export default function ShopPage() {
           <div className="flex items-center gap-1">
             <button
               onClick={() => setView('grid')}
-              className={`p-2 rounded-lg ${view === 'grid' ? 'bg-gray-900 text-white' : 'text-gray-400 hover:text-gray-900'}`}
+              className={`p-2 rounded-lg ${view === 'grid' ? 'bg-navy-800 text-white' : 'text-gray-400 hover:text-navy-800'}`}
             >
               <Grid3X3 className="w-4 h-4" />
             </button>
             <button
               onClick={() => setView('list')}
-              className={`p-2 rounded-lg ${view === 'list' ? 'bg-gray-900 text-white' : 'text-gray-400 hover:text-gray-900'}`}
+              className={`p-2 rounded-lg ${view === 'list' ? 'bg-navy-800 text-white' : 'text-gray-400 hover:text-navy-800'}`}
             >
               <List className="w-4 h-4" />
             </button>
@@ -152,7 +152,7 @@ export default function ShopPage() {
           >
             <div className="bg-white border border-gray-100 rounded-2xl p-5 shadow-card sticky top-24">
               <div className="flex items-center justify-between mb-4">
-                <h3 className="font-poppins font-semibold text-gray-900 text-sm">FILTERS</h3>
+                <h3 className="font-poppins font-semibold text-navy-800 text-sm">FILTERS</h3>
                 {(selectedCategory || selectedSizes.length > 0) && (
                   <button
                     onClick={() => { setSelectedCategory(''); setSelectedSizes([]); setPage(1); }}
@@ -173,7 +173,7 @@ export default function ShopPage() {
                       name="cat"
                       checked={selectedCategory === ''}
                       onChange={() => { setSelectedCategory(''); setPage(1); }}
-                      className="accent-gray-900"
+                      className="accent-navy-800"
                     />
                     <span className="font-poppins text-sm text-gray-700">All</span>
                   </label>
@@ -184,7 +184,7 @@ export default function ShopPage() {
                         name="cat"
                         checked={selectedCategory === cat.slug}
                         onChange={() => { setSelectedCategory(cat.slug); setPage(1); }}
-                        className="accent-gray-900"
+                        className="accent-navy-800"
                       />
                       <span className="font-poppins text-sm text-gray-700">{cat.name}</span>
                     </label>
@@ -207,7 +207,7 @@ export default function ShopPage() {
                     step={100}
                     value={priceRange[1]}
                     onChange={(e) => { setPriceRange([priceRange[0], Number(e.target.value)]); setPage(1); }}
-                    className="w-full accent-gray-900"
+                    className="w-full accent-navy-800"
                   />
                 </div>
               </div>
@@ -227,8 +227,8 @@ export default function ShopPage() {
                       }}
                       className={`px-3 py-1 rounded-full text-xs font-poppins border transition-colors ${
                         selectedSizes.includes(size)
-                          ? 'bg-gray-900 text-white border-gray-900'
-                          : 'border-gray-200 text-gray-600 hover:border-pink-400'
+                          ? 'bg-navy-800 text-white border-navy-800'
+                          : 'border-gray-200 text-gray-600 hover:border-navy-400'
                       }`}
                     >
                       {size}
@@ -250,7 +250,7 @@ export default function ShopPage() {
             ) : products.length === 0 ? (
               <div className="text-center py-20">
                 <div className="text-6xl mb-4">🛍️</div>
-                <h3 className="font-playfair text-2xl text-gray-900 mb-2">No products found</h3>
+                <h3 className="font-playfair text-2xl text-navy-800 mb-2">No products found</h3>
                 <p className="font-poppins text-gray-500 text-sm">Try adjusting your filters or search query.</p>
               </div>
             ) : (
@@ -267,7 +267,7 @@ export default function ShopPage() {
                     <button
                       onClick={() => setPage((p) => Math.max(1, p - 1))}
                       disabled={page === 1}
-                      className="w-9 h-9 rounded-full border border-gray-200 flex items-center justify-center text-gray-900 disabled:opacity-40 hover:border-gray-900 transition-colors"
+                      className="w-9 h-9 rounded-full border border-gray-200 flex items-center justify-center text-navy-800 disabled:opacity-40 hover:border-navy-800 transition-colors"
                     >
                       ‹
                     </button>
@@ -277,8 +277,8 @@ export default function ShopPage() {
                         onClick={() => setPage(p)}
                         className={`w-9 h-9 rounded-full text-sm font-poppins font-medium border transition-colors ${
                           page === p
-                            ? 'bg-gray-900 text-white border-gray-900'
-                            : 'border-gray-200 text-gray-900 hover:border-gray-900'
+                            ? 'bg-navy-800 text-white border-navy-800'
+                            : 'border-gray-200 text-navy-800 hover:border-navy-800'
                         }`}
                       >
                         {p}
@@ -287,7 +287,7 @@ export default function ShopPage() {
                     <button
                       onClick={() => setPage((p) => Math.min(totalPages, p + 1))}
                       disabled={page === totalPages}
-                      className="w-9 h-9 rounded-full border border-gray-200 flex items-center justify-center text-gray-900 disabled:opacity-40 hover:border-gray-900 transition-colors"
+                      className="w-9 h-9 rounded-full border border-gray-200 flex items-center justify-center text-navy-800 disabled:opacity-40 hover:border-navy-800 transition-colors"
                     >
                       ›
                     </button>

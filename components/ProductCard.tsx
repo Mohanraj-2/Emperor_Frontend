@@ -2,16 +2,16 @@
 import Link from 'next/link';
 import { Heart, ShoppingBag, Star } from 'lucide-react';
 import { Product } from '@/lib/types';
-import { useCart } from '@/lib/cartContext';
-import { useWishlist } from '@/lib/wishlistContext';
+import { useCartStore } from '@/store/useCartStore';
+import { useWishlistStore } from '@/store/useWishlistStore';
 
 interface Props {
   product: Product;
 }
 
 export default function ProductCard({ product }: Props) {
-  const { addItem } = useCart();
-  const { toggle, isWishlisted } = useWishlist();
+  const addItem = useCartStore((s) => s.addItem);
+  const { toggle, isWishlisted } = useWishlistStore();
   const wishlisted = isWishlisted(product.id);
 
   const badgeClass =
@@ -39,7 +39,7 @@ export default function ProductCard({ product }: Props) {
             </span>
           )}
           {/* Quick add overlay */}
-          <div className="absolute inset-x-0 bottom-0 bg-pink-500/95 py-3 flex items-center justify-center gap-2 translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+          <div className="absolute inset-x-0 bottom-0 bg-navy-800/90 py-3 flex items-center justify-center gap-2 translate-y-full group-hover:translate-y-0 transition-transform duration-300">
             <button
               onClick={(e) => {
                 e.preventDefault();
@@ -67,7 +67,7 @@ export default function ProductCard({ product }: Props) {
       {/* Info */}
       <div className="p-4">
         <Link href={`/shop/${product.slug}`}>
-          <h3 className="font-poppins font-medium text-gray-800 text-sm leading-snug hover:text-pink-500 transition-colors line-clamp-1">
+          <h3 className="font-poppins font-medium text-navy-800 text-sm leading-snug hover:text-pink-500 transition-colors line-clamp-1">
             {product.name}
           </h3>
         </Link>
@@ -79,7 +79,7 @@ export default function ProductCard({ product }: Props) {
         </div>
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <span className="font-poppins font-bold text-gray-800 text-base">
+            <span className="font-poppins font-bold text-navy-800 text-base">
               ₹{product.price.toLocaleString('en-IN')}
             </span>
             {product.original_price && (
@@ -89,7 +89,7 @@ export default function ProductCard({ product }: Props) {
             )}
           </div>
           {product.original_price && (
-            <span className="text-xs font-poppins text-pink-600 font-medium">
+            <span className="text-xs font-poppins text-green-600 font-medium">
               {Math.round(((product.original_price - product.price) / product.original_price) * 100)}% off
             </span>
           )}

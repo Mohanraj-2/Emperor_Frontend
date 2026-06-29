@@ -40,24 +40,24 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-900 to-gray-800 flex items-center justify-center p-4">
+    <div className="min-h-screen bg-gradient-to-br from-navy-900 via-navy-800 to-navy-700 flex items-center justify-center p-4">
       <div className="w-full max-w-md">
         {/* Logo */}
         <div className="text-center mb-8">
           <Link href="/" className="inline-flex items-center gap-3 justify-center">
             <div className="w-12 h-12 bg-pink-400 rounded-full flex items-center justify-center">
-              <Crown className="w-6 h-6 text-gray-900" />
+              <Crown className="w-6 h-6 text-navy-800" />
             </div>
             <div className="text-left">
               <div className="font-playfair font-bold text-white text-2xl">EMPIRE</div>
               <div className="font-poppins text-[10px] text-pink-300 tracking-[0.3em] uppercase">— LIFESTYLE —</div>
             </div>
           </Link>
-          <p className="font-poppins text-gray-300 text-sm mt-4">Welcome back to the Empire</p>
+          <p className="font-poppins text-navy-200 text-sm mt-4">Welcome back to the Empire</p>
         </div>
 
         <div className="bg-white rounded-3xl shadow-2xl p-8">
-          <h2 className="font-playfair text-2xl font-bold text-gray-900 mb-6 text-center">Sign In</h2>
+          <h2 className="font-playfair text-2xl font-bold text-navy-800 mb-6 text-center">Sign In</h2>
 
           {error && (
             <div className="bg-red-50 border border-red-200 rounded-xl px-4 py-3 mb-5">
@@ -74,7 +74,7 @@ export default function LoginPage() {
                   {...register('email')}
                   type="email"
                   placeholder="you@example.com"
-                  className={`w-full pl-10 pr-4 py-3 border rounded-xl text-sm font-poppins outline-none transition-colors ${errors.email ? 'border-red-300' : 'border-gray-200 focus:border-pink-400'}`}
+                  className={`w-full pl-10 pr-4 py-3 border rounded-xl text-sm font-poppins outline-none transition-colors ${errors.email ? 'border-red-300' : 'border-gray-200 focus:border-navy-400'}`}
                 />
               </div>
               {errors.email && <p className="text-red-500 text-xs font-poppins mt-1">{errors.email.message}</p>}
@@ -88,7 +88,7 @@ export default function LoginPage() {
                   {...register('password')}
                   type={showPass ? 'text' : 'password'}
                   placeholder="••••••••"
-                  className={`w-full pl-10 pr-10 py-3 border rounded-xl text-sm font-poppins outline-none transition-colors ${errors.password ? 'border-red-300' : 'border-gray-200 focus:border-pink-400'}`}
+                  className={`w-full pl-10 pr-10 py-3 border rounded-xl text-sm font-poppins outline-none transition-colors ${errors.password ? 'border-red-300' : 'border-gray-200 focus:border-navy-400'}`}
                 />
                 <button type="button" onClick={() => setShowPass(!showPass)} className="absolute right-3 top-1/2 -translate-y-1/2">
                   {showPass ? <EyeOff className="w-4 h-4 text-gray-400" /> : <Eye className="w-4 h-4 text-gray-400" />}
@@ -115,14 +115,14 @@ export default function LoginPage() {
           <div className="mt-6 text-center">
             <p className="font-poppins text-xs text-gray-500">
               Don&apos;t have an account?{' '}
-              <Link href="/auth/register" className="text-gray-900 font-semibold hover:text-pink-500 transition-colors">
+              <Link href="/auth/register" className="text-navy-800 font-semibold hover:text-pink-500 transition-colors">
                 Create Account
               </Link>
             </p>
           </div>
         </div>
 
-        <p className="text-center font-poppins text-xs text-gray-500 mt-6">
+        <p className="text-center font-poppins text-xs text-navy-400 mt-6">
           &copy; 2025 Empire Lifestyle
         </p>
       </div>

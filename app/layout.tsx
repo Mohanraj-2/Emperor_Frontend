@@ -1,12 +1,10 @@
 import './globals.css';
 import type { Metadata } from 'next';
-import { CartProvider } from '@/lib/cartContext';
-import { WishlistProvider } from '@/lib/wishlistContext';
-import { AuthProvider } from '@/lib/authContext';
+import StoreHydration from '@/components/StoreHydration';
 
 export const metadata: Metadata = {
   title: 'Empire Lifestyle – Premium Luxury Fashion',
-  description: "Luxury is not about brands. It's about the lifestyle you build. Shop premium T-shirts, hoodies, jewellery, accessories and more.",
+  description: 'Luxury is not about brands. It\'s about the lifestyle you build. Shop premium T-shirts, hoodies, jewellery, accessories and more.',
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
@@ -19,13 +17,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         />
       </head>
       <body className="font-poppins antialiased">
-        <AuthProvider>
-          <CartProvider>
-            <WishlistProvider>
-              {children}
-            </WishlistProvider>
-          </CartProvider>
-        </AuthProvider>
+        <StoreHydration />
+        {children}
       </body>
     </html>
   );
