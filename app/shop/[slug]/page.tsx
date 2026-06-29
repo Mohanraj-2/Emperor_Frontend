@@ -119,11 +119,11 @@ export default function ProductDetailPage() {
       {/* Breadcrumb */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 pt-6">
         <nav className="font-poppins text-xs text-gray-400">
-          <Link href="/" className="hover:text-navy-800">Home</Link>
+          <Link href="/" className="hover:text-gray-900">Home</Link>
           {' › '}
-          <Link href="/shop" className="hover:text-navy-800">Shop</Link>
+          <Link href="/shop" className="hover:text-gray-900">Shop</Link>
           {' › '}
-          <span className="text-navy-800">{product.name}</span>
+          <span className="text-gray-900">{product.name}</span>
         </nav>
       </div>
 
@@ -137,7 +137,7 @@ export default function ProductDetailPage() {
                   key={i}
                   onClick={() => setActiveImg(i)}
                   className={`w-16 h-20 rounded-xl overflow-hidden border-2 transition-colors ${
-                    activeImg === i ? 'border-navy-800' : 'border-gray-100'
+                    activeImg === i ? 'border-gray-900' : 'border-gray-100'
                   }`}
                 >
                   <img src={img} alt="" className="w-full h-full object-cover" />
@@ -162,13 +162,13 @@ export default function ProductDetailPage() {
                 onClick={() => setActiveImg((i) => Math.max(0, i - 1))}
                 className="absolute left-3 top-1/2 -translate-y-1/2 w-9 h-9 bg-white/90 rounded-full flex items-center justify-center shadow-md hover:bg-white transition-colors"
               >
-                <ChevronLeft className="w-4 h-4 text-navy-800" />
+                <ChevronLeft className="w-4 h-4 text-gray-900" />
               </button>
               <button
                 onClick={() => setActiveImg((i) => Math.min(productImages.length - 1, i + 1))}
                 className="absolute right-3 top-1/2 -translate-y-1/2 w-9 h-9 bg-white/90 rounded-full flex items-center justify-center shadow-md hover:bg-white transition-colors"
               >
-                <ChevronRight className="w-4 h-4 text-navy-800" />
+                <ChevronRight className="w-4 h-4 text-gray-900" />
               </button>
             </div>
           </div>
@@ -180,7 +180,7 @@ export default function ProductDetailPage() {
                 <p className="font-poppins text-xs text-pink-500 font-semibold uppercase tracking-wider mb-1">
                   {(product as any).categories?.name}
                 </p>
-                <h1 className="font-playfair text-3xl font-bold text-navy-800">{product.name}</h1>
+                <h1 className="font-playfair text-3xl font-bold text-gray-900">{product.name}</h1>
               </div>
               <div className="flex gap-2">
                 <button
@@ -189,7 +189,7 @@ export default function ProductDetailPage() {
                 >
                   <Heart className={`w-5 h-5 ${isWishlisted(product.id) ? 'fill-pink-500 text-pink-500' : 'text-gray-400'}`} />
                 </button>
-                <button className="w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center hover:border-navy-400 transition-colors">
+                <button className="w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center hover:border-pink-400 transition-colors">
                   <Share2 className="w-5 h-5 text-gray-400" />
                 </button>
               </div>
@@ -206,7 +206,7 @@ export default function ProductDetailPage() {
 
             {/* Price */}
             <div className="flex items-center gap-3 mb-6">
-              <span className="font-playfair text-3xl font-bold text-navy-800">
+              <span className="font-playfair text-3xl font-bold text-gray-900">
                 ₹{product.price.toLocaleString('en-IN')}
               </span>
               {product.original_price && (
@@ -225,7 +225,7 @@ export default function ProductDetailPage() {
             {sizes.length > 0 && (
               <div className="mb-5">
                 <div className="flex items-center justify-between mb-3">
-                  <span className="font-poppins font-semibold text-sm text-navy-800">Size</span>
+                  <span className="font-poppins font-semibold text-sm text-gray-900">Size</span>
                   <button className="text-xs text-pink-500 font-poppins hover:underline">Size Guide</button>
                 </div>
                 <div className="flex gap-2 flex-wrap">
@@ -235,8 +235,8 @@ export default function ProductDetailPage() {
                       onClick={() => setSelectedSize(s)}
                       className={`w-12 h-10 rounded-lg border-2 text-sm font-poppins font-medium transition-all ${
                         selectedSize === s
-                          ? 'bg-navy-800 text-white border-navy-800'
-                          : 'border-gray-200 text-gray-600 hover:border-navy-400'
+                          ? 'bg-gray-900 text-white border-gray-900'
+                          : 'border-gray-200 text-gray-600 hover:border-pink-400'
                       }`}
                     >
                       {s}
@@ -249,7 +249,7 @@ export default function ProductDetailPage() {
             {/* Color */}
             {colors.length > 0 && (
               <div className="mb-5">
-                <span className="font-poppins font-semibold text-sm text-navy-800 block mb-3">
+                <span className="font-poppins font-semibold text-sm text-gray-900 block mb-3">
                   Color: <span className="font-normal text-gray-500">{selectedColor}</span>
                 </span>
                 <div className="flex gap-3">
@@ -260,7 +260,7 @@ export default function ProductDetailPage() {
                       title={c}
                       style={{ backgroundColor: colorMap[c] || '#ccc' }}
                       className={`w-9 h-9 rounded-full border-4 transition-all ${
-                        selectedColor === c ? 'border-navy-800 scale-110' : 'border-gray-100 hover:border-gray-300'
+                        selectedColor === c ? 'border-gray-900 scale-110' : 'border-gray-100 hover:border-gray-300'
                       }`}
                     />
                   ))}
@@ -270,18 +270,18 @@ export default function ProductDetailPage() {
 
             {/* Quantity */}
             <div className="mb-6">
-              <span className="font-poppins font-semibold text-sm text-navy-800 block mb-3">Quantity</span>
+              <span className="font-poppins font-semibold text-sm text-gray-900 block mb-3">Quantity</span>
               <div className="flex items-center gap-0 border border-gray-200 rounded-full w-fit overflow-hidden">
                 <button
                   onClick={() => setQuantity((q) => Math.max(1, q - 1))}
-                  className="w-10 h-10 flex items-center justify-center text-navy-800 hover:bg-gray-50 font-bold"
+                  className="w-10 h-10 flex items-center justify-center text-gray-900 hover:bg-gray-50 font-bold"
                 >
                   −
                 </button>
-                <span className="w-12 text-center font-poppins font-medium text-navy-800">{quantity}</span>
+                <span className="w-12 text-center font-poppins font-medium text-gray-900">{quantity}</span>
                 <button
                   onClick={() => setQuantity((q) => q + 1)}
-                  className="w-10 h-10 flex items-center justify-center text-navy-800 hover:bg-gray-50 font-bold"
+                  className="w-10 h-10 flex items-center justify-center text-gray-900 hover:bg-gray-50 font-bold"
                 >
                   +
                 </button>
@@ -325,7 +325,7 @@ export default function ProductDetailPage() {
 
             {product.description && (
               <div className="mt-6 border-t border-gray-100 pt-6">
-                <h3 className="font-poppins font-semibold text-sm text-navy-800 mb-2">Description</h3>
+                <h3 className="font-poppins font-semibold text-sm text-gray-900 mb-2">Description</h3>
                 <p className="font-poppins text-sm text-gray-600 leading-relaxed">{product.description}</p>
               </div>
             )}

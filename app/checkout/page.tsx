@@ -104,7 +104,7 @@ export default function CheckoutPage() {
       <Navbar />
 
       {/* Header */}
-      <div className="bg-navy-800 py-10">
+      <div className="bg-gray-900 py-10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <h1 className="font-playfair text-3xl font-bold text-white mb-4">Checkout</h1>
           {/* Steps */}
@@ -112,12 +112,12 @@ export default function CheckoutPage() {
             {STEPS.map((s, i) => (
               <div key={s} className="flex items-center gap-2">
                 <div className={`w-7 h-7 rounded-full flex items-center justify-center text-xs font-poppins font-bold ${
-                  i <= step ? 'bg-pink-400 text-navy-800' : 'bg-navy-600 text-navy-300'
+                  i <= step ? 'bg-pink-400 text-gray-900' : 'bg-gray-700 text-gray-400'
                 }`}>
                   {i < step ? <Check className="w-3 h-3" /> : i + 1}
                 </div>
-                <span className={`font-poppins text-xs font-medium ${i <= step ? 'text-white' : 'text-navy-400'}`}>{s}</span>
-                {i < STEPS.length - 1 && <ChevronRight className="w-3 h-3 text-navy-500" />}
+                <span className={`font-poppins text-xs font-medium ${i <= step ? 'text-white' : 'text-gray-500'}`}>{s}</span>
+                {i < STEPS.length - 1 && <ChevronRight className="w-3 h-3 text-gray-600" />}
               </div>
             ))}
           </div>
@@ -130,7 +130,7 @@ export default function CheckoutPage() {
           <div className="grid lg:grid-cols-3 gap-8">
             <form onSubmit={handleSubmit(() => setStep(1))} className="lg:col-span-2">
               <div className="bg-white rounded-2xl shadow-card p-6">
-                <h2 className="font-poppins font-semibold text-navy-800 text-base mb-5">SHIPPING DETAILS</h2>
+                <h2 className="font-poppins font-semibold text-gray-900 text-base mb-5">SHIPPING DETAILS</h2>
                 <div className="grid sm:grid-cols-2 gap-4">
                   {[
                     { name: 'full_name', label: 'Full Name', placeholder: 'Rahul Sharma', colSpan: 1 },
@@ -147,7 +147,7 @@ export default function CheckoutPage() {
                         {...register(name as keyof FormData)}
                         placeholder={placeholder}
                         className={`w-full border rounded-xl px-4 py-3 text-sm font-poppins outline-none transition-colors ${
-                          errors[name as keyof FormData] ? 'border-red-300 focus:border-red-400' : 'border-gray-200 focus:border-navy-400'
+                          errors[name as keyof FormData] ? 'border-red-300 focus:border-red-400' : 'border-gray-200 focus:border-gray-500'
                         }`}
                       />
                       {errors[name as keyof FormData] && (
@@ -170,13 +170,13 @@ export default function CheckoutPage() {
           <div className="grid lg:grid-cols-3 gap-8">
             <div className="lg:col-span-2">
               <div className="bg-white rounded-2xl shadow-card p-6">
-                <h2 className="font-poppins font-semibold text-navy-800 text-base mb-5">PAYMENT METHOD</h2>
+                <h2 className="font-poppins font-semibold text-gray-900 text-base mb-5">PAYMENT METHOD</h2>
                 <div className="space-y-3 mb-6">
                   {PAYMENT_METHODS.map(({ id, icon: Icon, label }) => (
                     <label
                       key={id}
                       className={`flex items-center gap-4 p-4 border-2 rounded-xl cursor-pointer transition-all ${
-                        paymentMethod === id ? 'border-navy-800 bg-navy-50' : 'border-gray-200 hover:border-gray-300'
+                        paymentMethod === id ? 'border-gray-900 bg-pink-50' : 'border-gray-200 hover:border-gray-300'
                       }`}
                     >
                       <input
@@ -185,10 +185,10 @@ export default function CheckoutPage() {
                         value={id}
                         checked={paymentMethod === id}
                         onChange={() => setPaymentMethod(id)}
-                        className="accent-navy-800"
+                        className="accent-gray-900"
                       />
-                      <Icon className="w-5 h-5 text-navy-800" />
-                      <span className="font-poppins font-medium text-navy-800 text-sm">{label}</span>
+                      <Icon className="w-5 h-5 text-gray-900" />
+                      <span className="font-poppins font-medium text-gray-900 text-sm">{label}</span>
                       {id === 'cod' && (
                         <span className="ml-auto text-xs font-poppins text-gray-400">+₹0 charge</span>
                       )}
@@ -200,16 +200,16 @@ export default function CheckoutPage() {
                   <div className="space-y-4 border-t border-gray-100 pt-4">
                     <div>
                       <label className="font-poppins text-xs text-gray-500 mb-1.5 block">Card Number</label>
-                      <input placeholder="1234 5678 9012 3456" className="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm font-poppins outline-none focus:border-navy-400" />
+                      <input placeholder="1234 5678 9012 3456" className="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm font-poppins outline-none focus:border-gray-500" />
                     </div>
                     <div className="grid grid-cols-2 gap-4">
                       <div>
                         <label className="font-poppins text-xs text-gray-500 mb-1.5 block">Expiry</label>
-                        <input placeholder="MM / YY" className="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm font-poppins outline-none focus:border-navy-400" />
+                        <input placeholder="MM / YY" className="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm font-poppins outline-none focus:border-gray-500" />
                       </div>
                       <div>
                         <label className="font-poppins text-xs text-gray-500 mb-1.5 block">CVV</label>
-                        <input placeholder="•••" type="password" maxLength={4} className="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm font-poppins outline-none focus:border-navy-400" />
+                        <input placeholder="•••" type="password" maxLength={4} className="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm font-poppins outline-none focus:border-gray-500" />
                       </div>
                     </div>
                   </div>
@@ -218,7 +218,7 @@ export default function CheckoutPage() {
                 {paymentMethod === 'upi' && (
                   <div className="border-t border-gray-100 pt-4">
                     <label className="font-poppins text-xs text-gray-500 mb-1.5 block">UPI ID</label>
-                    <input placeholder="yourname@upi" className="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm font-poppins outline-none focus:border-navy-400" />
+                    <input placeholder="yourname@upi" className="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm font-poppins outline-none focus:border-gray-500" />
                   </div>
                 )}
 
@@ -251,16 +251,16 @@ export default function CheckoutPage() {
                 <Check className="w-10 h-10 text-green-500" />
               </div>
               <Crown className="w-8 h-8 text-pink-400 mx-auto mb-3" />
-              <h2 className="font-playfair text-3xl font-bold text-navy-800 mb-3">Thank You!</h2>
+              <h2 className="font-playfair text-3xl font-bold text-gray-900 mb-3">Thank You!</h2>
               <p className="font-poppins text-gray-500 text-sm mb-6">Your order has been placed successfully.</p>
               <div className="bg-gray-50 rounded-2xl p-4 mb-8 text-left space-y-2">
                 <div className="flex justify-between">
                   <span className="font-poppins text-xs text-gray-500">Order Number</span>
-                  <span className="font-poppins font-bold text-navy-800 text-sm">{orderNumber}</span>
+                  <span className="font-poppins font-bold text-gray-900 text-sm">{orderNumber}</span>
                 </div>
                 <div className="flex justify-between">
                   <span className="font-poppins text-xs text-gray-500">Total Paid</span>
-                  <span className="font-poppins font-bold text-navy-800 text-sm">₹{total.toLocaleString('en-IN')}</span>
+                  <span className="font-poppins font-bold text-gray-900 text-sm">₹{total.toLocaleString('en-IN')}</span>
                 </div>
                 <div className="flex justify-between">
                   <span className="font-poppins text-xs text-gray-500">Delivery</span>
@@ -294,7 +294,7 @@ export default function CheckoutPage() {
 function OrderSummary({ items, sub, shipping, total }: { items: any[]; sub: number; shipping: number; total: number }) {
   return (
     <div className="bg-white rounded-2xl shadow-card p-6">
-      <h3 className="font-poppins font-semibold text-navy-800 text-sm mb-4">ORDER SUMMARY</h3>
+      <h3 className="font-poppins font-semibold text-gray-900 text-sm mb-4">ORDER SUMMARY</h3>
       <div className="space-y-3 mb-4">
         {items.map((item: any) => (
           <div key={`${item.product.id}-${item.size}`} className="flex items-center gap-3">
@@ -302,27 +302,27 @@ function OrderSummary({ items, sub, shipping, total }: { items: any[]; sub: numb
               <img src={item.product.image_url || ''} alt={item.product.name} className="w-full h-full object-cover" />
             </div>
             <div className="flex-1 min-w-0">
-              <p className="font-poppins text-xs font-medium text-navy-800 truncate">{item.product.name}</p>
+              <p className="font-poppins text-xs font-medium text-gray-900 truncate">{item.product.name}</p>
               <p className="font-poppins text-xs text-gray-400">Qty: {item.quantity}</p>
             </div>
-            <span className="font-poppins text-xs font-semibold text-navy-800">₹{(item.product.price * item.quantity).toLocaleString('en-IN')}</span>
+            <span className="font-poppins text-xs font-semibold text-gray-900">₹{(item.product.price * item.quantity).toLocaleString('en-IN')}</span>
           </div>
         ))}
       </div>
       <div className="border-t border-gray-100 pt-4 space-y-2">
         <div className="flex justify-between">
           <span className="font-poppins text-xs text-gray-500">Subtotal</span>
-          <span className="font-poppins text-xs text-navy-800">₹{sub.toLocaleString('en-IN')}</span>
+          <span className="font-poppins text-xs text-gray-900">₹{sub.toLocaleString('en-IN')}</span>
         </div>
         <div className="flex justify-between">
           <span className="font-poppins text-xs text-gray-500">Shipping</span>
-          <span className={`font-poppins text-xs ${shipping === 0 ? 'text-green-600' : 'text-navy-800'}`}>
+          <span className={`font-poppins text-xs ${shipping === 0 ? 'text-green-600' : 'text-gray-900'}`}>
             {shipping === 0 ? 'FREE' : `₹${shipping}`}
           </span>
         </div>
         <div className="flex justify-between border-t border-gray-100 pt-2">
-          <span className="font-poppins font-bold text-navy-800 text-sm">Total</span>
-          <span className="font-playfair font-bold text-navy-800 text-lg">₹{total.toLocaleString('en-IN')}</span>
+          <span className="font-poppins font-bold text-gray-900 text-sm">Total</span>
+          <span className="font-playfair font-bold text-gray-900 text-lg">₹{total.toLocaleString('en-IN')}</span>
         </div>
       </div>
     </div>

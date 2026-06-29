@@ -5,41 +5,43 @@
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Poppins:wght@300;400;500;600;700&display=swap');
 
 :root {
-  --navy: #0B1F4D;
-  --pink: #F7B6C6;
+  --pink: #FF9AAD;
+  --pink-dark: #E85A76;
   --white: #FFFFFF;
-  --light-gray: #F5F5F5;
-  --text-dark: #1F2937;
-  --border-gray: #E5E7EB;
+  --off-white: #FEFEFE;
+  --light-gray: #FAFAFA;
+  --text-dark: #2D2D2D;
+  --text-light: #6B6B6B;
+  --border-gray: #F0F0F0;
   --radius: 1rem;
 }
 
 @layer base {
   :root {
     --background: 0 0% 100%;
-    --foreground: 220 40% 12%;
+    --foreground: 0 0% 18%;
     --card: 0 0% 100%;
-    --card-foreground: 220 40% 12%;
+    --card-foreground: 0 0% 18%;
     --popover: 0 0% 100%;
-    --popover-foreground: 220 40% 12%;
-    --primary: 224 64% 18%;
-    --primary-foreground: 0 0% 98%;
-    --secondary: 350 78% 86%;
-    --secondary-foreground: 224 64% 18%;
-    --muted: 210 20% 96%;
-    --muted-foreground: 220 10% 46%;
-    --accent: 350 78% 86%;
-    --accent-foreground: 224 64% 18%;
+    --popover-foreground: 0 0% 18%;
+    --primary: 350 100% 76%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 350 100% 92%;
+    --secondary-foreground: 0 0% 18%;
+    --muted: 0 0% 96%;
+    --muted-foreground: 0 0% 46%;
+    --accent: 350 100% 76%;
+    --accent-foreground: 0 0% 100%;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
-    --border: 220 13% 91%;
-    --input: 220 13% 91%;
-    --ring: 224 64% 18%;
-    --chart-1: 224 64% 18%;
-    --chart-2: 350 78% 75%;
-    --chart-3: 197 37% 24%;
-    --chart-4: 43 74% 66%;
-    --chart-5: 27 87% 67%;
+    --border: 0 0% 94%;
+    --input: 0 0% 94%;
+    --ring: 350 100% 76%;
+    --chart-1: 350 100% 76%;
+    --chart-2: 350 100% 90%;
+    --chart-3: 0 0% 46%;
+    --chart-4: 350 80% 70%;
+    --chart-5: 350 60% 60%;
     --radius: 1rem;
   }
 }
@@ -49,7 +51,7 @@
     @apply border-border;
   }
   body {
-    @apply bg-white text-[#1F2937] font-poppins;
+    @apply bg-white text-gray-800 font-poppins;
     font-feature-settings: 'rlig' 1, 'calt' 1;
   }
   h1, h2, h3, h4 {
@@ -58,35 +60,36 @@
 }
 
 @layer components {
-  .btn-navy {
-    @apply bg-navy-800 text-white px-6 py-3 rounded-full font-poppins font-medium text-sm
-           hover:bg-navy-700 transition-all duration-200 inline-flex items-center gap-2;
+  .btn-primary {
+    @apply bg-pink-500 text-white px-6 py-3 rounded-full font-poppins font-medium text-sm
+           hover:bg-pink-600 transition-all duration-200 inline-flex items-center gap-2;
   }
   .btn-pink {
-    @apply bg-pink-400 text-navy-800 px-6 py-3 rounded-full font-poppins font-medium text-sm
+    @apply bg-pink-400 text-white px-6 py-3 rounded-full font-poppins font-medium text-sm
            hover:bg-pink-500 transition-all duration-200 inline-flex items-center gap-2;
   }
   .btn-outline {
-    @apply border-2 border-navy-800 text-navy-800 px-6 py-3 rounded-full font-poppins font-medium text-sm
-           hover:bg-navy-800 hover:text-white transition-all duration-200 inline-flex items-center gap-2;
+    @apply border-2 border-pink-400 text-pink-500 px-6 py-3 rounded-full font-poppins font-medium text-sm
+           hover:bg-pink-400 hover:text-white transition-all duration-200 inline-flex items-center gap-2;
   }
   .card-luxury {
-    @apply bg-white rounded-2xl shadow-card hover:shadow-card-hover transition-all duration-300;
+    @apply bg-white rounded-2xl shadow-card hover:shadow-card-hover transition-all duration-300
+           border border-gray-100 hover:border-pink-100;
   }
   .badge-new {
-    @apply bg-pink-400 text-navy-800 text-xs font-poppins font-semibold px-2 py-1 rounded-full;
+    @apply bg-pink-500 text-white text-xs font-poppins font-semibold px-2 py-1 rounded-full;
   }
   .badge-sale {
-    @apply bg-red-500 text-white text-xs font-poppins font-semibold px-2 py-1 rounded-full;
+    @apply bg-pink-600 text-white text-xs font-poppins font-semibold px-2 py-1 rounded-full;
   }
   .badge-bestseller {
-    @apply bg-navy-800 text-white text-xs font-poppins font-semibold px-2 py-1 rounded-full;
+    @apply bg-gray-800 text-white text-xs font-poppins font-semibold px-2 py-1 rounded-full;
   }
   .section-heading {
-    @apply font-playfair text-3xl font-bold text-navy-800;
+    @apply font-playfair text-3xl font-bold text-gray-800;
   }
   .nav-link {
-    @apply text-sm font-poppins font-medium text-navy-800 hover:text-pink-500 transition-colors duration-200 uppercase tracking-wide;
+    @apply text-sm font-poppins font-medium text-gray-700 hover:text-pink-500 transition-colors duration-200 uppercase tracking-wide;
   }
 }
 
@@ -95,10 +98,10 @@
   width: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: #F5F5F5;
+  background: #FAFAFA;
 }
 ::-webkit-scrollbar-thumb {
-  background: #0B1F4D;
+  background: #FF9AAD;
   border-radius: 3px;
 }
 
