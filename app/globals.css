@@ -117,3 +117,253 @@ html {
 .product-img-zoom:hover img {
   transform: scale(1.08);
 }
+
+/* ============================================
+   Empire Lifestyle Global Loader Animations
+   ============================================ */
+
+/* Shimmer animation for skeletons */
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.animate-shimmer {
+  animation: shimmer 2s infinite linear;
+}
+
+/* Main Empire Loader */
+.empire-loader {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+/* Loader Ring - Outer navy circle with pink inner */
+.loader-ring {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background: conic-gradient(from 0deg, transparent 0%, #0B1F4D 25%, #F7B6C6 50%, #0B1F4D 75%, transparent 100%);
+  animation: spin 2s linear infinite;
+  padding: 4px;
+  box-shadow: 0 0 30px rgba(11, 31, 77, 0.2), 0 0 60px rgba(247, 182, 198, 0.1);
+}
+
+.loader-ring-inner {
+  width: 100%;
+  height: 100%;
+  background: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.loader-icon {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.1);
+    opacity: 0.8;
+  }
+}
+
+/* Loading Dots */
+.loader-dots {
+  display: flex;
+  gap: 8px;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  animation: bounce-dot 1.4s infinite ease-in-out both;
+}
+
+.dot-1 {
+  background: #0B1F4D;
+  animation-delay: -0.32s;
+}
+
+.dot-2 {
+  background: #F7B6C6;
+  animation-delay: -0.16s;
+}
+
+.dot-3 {
+  background: #0B1F4D;
+  animation-delay: 0s;
+}
+
+@keyframes bounce-dot {
+  0%, 80%, 100% {
+    transform: scale(0.6);
+    opacity: 0.5;
+  }
+  40% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* Page Loader - Smaller version */
+.page-loader {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.loader-circle {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: conic-gradient(from 0deg, transparent 0%, #0B1F4D 25%, #F7B6C6 50%, #0B1F4D 75%, transparent 100%);
+  animation: spin 1.5s linear infinite;
+  padding: 3px;
+}
+
+.loader-circle-inner {
+  width: 100%;
+  height: 100%;
+  background: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* E Logo Spinner */
+.e-logo-spinner {
+  width: 60px;
+  height: 60px;
+  position: relative;
+}
+
+.e-logo-spinner::before {
+  content: 'E';
+  font-family: 'Playfair Display', serif;
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #0B1F4D;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation: e-pulse 2s ease-in-out infinite;
+}
+
+.e-logo-spinner::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: conic-gradient(from 0deg, transparent 0%, #F7B6C6 30%, transparent 70%);
+  animation: spin 2s linear infinite;
+}
+
+@keyframes e-pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.6;
+  }
+}
+
+/* Shopping Bag Pulse */
+.shopping-bag-loader {
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: bag-bounce 1.5s ease-in-out infinite;
+}
+
+@keyframes bag-bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+/* Luxury Progress Ring */
+.progress-ring {
+  width: 80px;
+  height: 80px;
+  position: relative;
+}
+
+.progress-ring circle {
+  fill: none;
+  stroke-width: 3;
+  stroke-linecap: round;
+}
+
+.progress-ring .ring-bg {
+  stroke: #E5E7EB;
+}
+
+.progress-ring .ring-progress {
+  stroke: #0B1F4D;
+  stroke-dasharray: 220;
+  stroke-dashoffset: 55;
+  animation: ring-fill 1.5s ease-in-out infinite;
+  transform-origin: center;
+  transform: rotate(-90deg);
+}
+
+@keyframes ring-fill {
+  0% {
+    stroke-dashoffset: 220;
+    transform: rotate(-90deg);
+  }
+  50% {
+    stroke-dashoffset: 55;
+    transform: rotate(-90deg);
+  }
+  100% {
+    stroke-dashoffset: 220;
+    transform: rotate(-90deg);
+  }
+}
+
+/* Hanger Animation */
+.hanger-loader {
+  width: 50px;
+  height: 50px;
+  animation: hanger-swing 2s ease-in-out infinite;
+}
+
+@keyframes hanger-swing {
+  0%, 100% {
+    transform: rotate(-5deg);
+  }
+  50% {
+    transform: rotate(5deg);
+  }
+}

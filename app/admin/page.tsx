@@ -35,6 +35,7 @@ import { ChartsSection } from '@/components/admin/Charts';
 import RecentOrdersTable from '@/components/admin/RecentOrdersTable';
 import QuickActions from '@/components/admin/QuickActions';
 import NotificationsPanel from '@/components/admin/NotificationsPanel';
+import { KPISkeletonGrid } from '@/components/loaders/SkeletonLoader';
 
 type AdminTab = 'overview' | 'products' | 'orders' | 'categories' | 'coupons' | 'customers' | 'reports' | 'inventory' | 'reviews' | 'notifications' | 'settings';
 
@@ -449,11 +450,66 @@ export default function AdminPage() {
         {/* Page Content */}
         <div className="p-4 lg:p-8">
           {loading ? (
-            <div className="flex items-center justify-center py-32">
-              <div className="text-center">
-                <Loader2 className="w-12 h-12 animate-spin text-navy-800 mx-auto" />
-                <p className="font-poppins text-gray-500 mt-4">Loading dashboard...</p>
-              </div>
+            <div className="space-y-8">
+              {/* KPI Cards Skeleton */}
+              <section>
+                <KPISkeletonGrid count={5} />
+              </section>
+
+              {/* Charts Skeleton */}
+              <section className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6">
+                <div className="xl:col-span-2">
+                  <div className="bg-white rounded-2xl shadow-md p-6 h-[380px]">
+                    <div className="flex items-center justify-between mb-6">
+                      <div className="h-6 w-40 bg-gray-200 rounded animate-shimmer" />
+                      <div className="h-10 w-10 bg-gray-200 rounded-xl animate-shimmer" />
+                    </div>
+                    <div className="h-[280px] bg-gradient-to-r from-gray-100 via-gray-50 to-gray-100 rounded-lg" />
+                  </div>
+                </div>
+                <div className="space-y-6">
+                  <div className="bg-white rounded-2xl shadow-md p-6 h-[180px]">
+                    <div className="h-6 w-40 bg-gray-200 rounded animate-shimmer mb-4" />
+                    <div className="h-[100px] bg-gradient-to-r from-gray-100 via-gray-50 to-gray-100 rounded-lg" />
+                  </div>
+                  <div className="bg-white rounded-2xl shadow-md p-6 h-[180px]">
+                    <div className="h-6 w-40 bg-gray-200 rounded animate-shimmer mb-4" />
+                    <div className="flex items-center justify-center h-[100px]">
+                      <div className="w-24 h-24 rounded-full border-4 border-gray-200 animate-shimmer" />
+                    </div>
+                  </div>
+                </div>
+              </section>
+
+              {/* Quick Actions Skeleton */}
+              <section className="grid grid-cols-1 xl:grid-cols-3 gap-6">
+                <div className="xl:col-span-2 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                  {Array.from({ length: 4 }).map((_, i) => (
+                    <div key={i} className="bg-white rounded-2xl shadow-md p-6">
+                      <div className="h-2 w-full bg-gray-200 rounded mb-4" />
+                      <div className="space-y-3">
+                        <div className="h-12 w-12 bg-gray-200 rounded-xl animate-shimmer" />
+                        <div className="h-5 w-24 bg-gray-200 rounded animate-shimmer" />
+                        <div className="h-4 w-32 bg-gray-200 rounded animate-shimmer" />
+                      </div>
+                    </div>
+                  ))}
+                </div>
+                <div className="bg-white rounded-2xl shadow-md p-6">
+                  <div className="flex items-center justify-between mb-6">
+                    <div className="h-6 w-24 bg-gray-200 rounded animate-shimmer" />
+                    <div className="h-10 w-10 bg-gray-200 rounded-xl animate-shimmer" />
+                  </div>
+                  <div className="space-y-4">
+                    {Array.from({ length: 3 }).map((_, i) => (
+                      <div key={i} className="p-4 rounded-xl border-l-4 border-gray-200 bg-gray-50">
+                        <div className="h-4 w-32 bg-gray-200 rounded animate-shimmer mb-2" />
+                        <div className="h-3 w-full bg-gray-200 rounded animate-shimmer" />
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </section>
             </div>
           ) : (
             <>
