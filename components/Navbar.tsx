@@ -14,6 +14,7 @@ import {
   X,
   Crown,
   ChevronDown,
+  LayoutDashboard,
 } from 'lucide-react';
 
 const navLinks = [
@@ -124,6 +125,10 @@ export default function Navbar() {
                     {wishlistCount}
                   </span>
                 )}
+              </Link>
+
+              <Link href="/admin" className="p-2 text-navy-800 hover:text-pink-500 transition-colors" title="Admin Dashboard">
+                <LayoutDashboard className="w-5 h-5" />
               </Link>
 
               <Link href="/auth/login" className="p-2 text-navy-800 hover:text-pink-500 transition-colors">
