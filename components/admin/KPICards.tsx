@@ -17,17 +17,11 @@ interface KPICardProps {
   change: string;
   isPositive: boolean;
   icon: React.ReactNode;
-  onClick?: () => void;
 }
 
-function KPICard({ title, value, change, isPositive, icon, onClick }: KPICardProps) {
+function KPICard({ title, value, change, isPositive, icon }: KPICardProps) {
   return (
-    <Card
-      onClick={onClick}
-      className={`group bg-white border-0 shadow-md hover:shadow-xl transition-all duration-300 rounded-2xl overflow-hidden ${
-        onClick ? 'cursor-pointer hover:scale-[1.02]' : ''
-      }`}
-    >
+    <Card className="group bg-white border-0 shadow-md hover:shadow-xl transition-all duration-300 rounded-2xl overflow-hidden">
       <CardContent className="p-6">
         <div className="flex items-start justify-between">
           <div className="flex-1">
@@ -72,10 +66,9 @@ interface KPIData {
 
 interface KPICardsProps {
   data?: KPIData;
-  onKpiClick?: (type: string, filter?: string) => void;
 }
 
-export default function KPICards({ data, onKpiClick }: KPICardsProps) {
+export default function KPICards({ data }: KPICardsProps) {
   const kpiData: KPIData = data || {
     totalRevenue: { value: '₹4,85,290', change: '+12.5%', isPositive: true },
     totalOrders: { value: '156', change: '+8.2%', isPositive: true },
@@ -89,47 +82,33 @@ export default function KPICards({ data, onKpiClick }: KPICardsProps) {
       title: 'Total Revenue',
       ...kpiData.totalRevenue,
       icon: <DollarSign className="w-7 h-7" />,
-      type: 'revenue',
-      filter: undefined,
     },
     {
       title: 'Total Orders',
       ...kpiData.totalOrders,
       icon: <ShoppingCart className="w-7 h-7" />,
-      type: 'orders',
-      filter: undefined,
     },
     {
       title: 'Pending Orders',
       ...kpiData.pendingOrders,
       icon: <Clock className="w-7 h-7" />,
-      type: 'orders',
-      filter: 'pending',
     },
     {
       title: 'Total Customers',
       ...kpiData.totalCustomers,
       icon: <Users className="w-7 h-7" />,
-      type: 'customers',
-      filter: undefined,
     },
     {
       title: 'Products Sold',
       ...kpiData.productsSold,
       icon: <Package className="w-7 h-7" />,
-      type: 'products',
-      filter: undefined,
     },
   ];
 
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
       {cards.map((card) => (
-        <KPICard
-          key={card.title}
-          {...card}
-          onClick={() => onKpiClick?.(card.type, card.filter)}
-        />
+        <KPICard key={card.title} {...card} />
       ))}
     </div>
   );

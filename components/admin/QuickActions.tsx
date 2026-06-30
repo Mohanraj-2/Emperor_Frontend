@@ -32,7 +32,7 @@ const quickActions: QuickAction[] = [
     title: 'Manage Orders',
     description: 'View and update orders',
     icon: <ClipboardList className="w-6 h-6" />,
-    href: '/admin?tab=orders',
+    href: '/admin/orders',
     gradient: 'from-blue-600 to-blue-700',
     iconBg: 'bg-blue-400',
   },

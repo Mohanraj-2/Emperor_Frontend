@@ -1,8 +1,6 @@
 import './globals.css';
 import type { Metadata } from 'next';
-import { Suspense } from 'react';
-import ClientLayout from '@/components/ClientLayout';
-import { NavigationLoader } from '@/components/loaders';
+import StoreHydration from '@/components/StoreHydration';
 
 export const metadata: Metadata = {
   title: 'Empire Lifestyle – Premium Luxury Fashion',
@@ -19,12 +17,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         />
       </head>
       <body className="font-poppins antialiased">
-        <Suspense fallback={null}>
-          <NavigationLoader />
-        </Suspense>
-        <Suspense fallback={null}>
-          <ClientLayout>{children}</ClientLayout>
-        </Suspense>
+        <StoreHydration />
+        {children}
       </body>
     </html>
   );
