@@ -65,6 +65,7 @@ export interface CartItem {
 
 export interface Order {
   id: string;
+  user_id?: string | null;
   order_number: string;
   status: string;
   subtotal: number;
@@ -75,7 +76,9 @@ export interface Order {
   payment_method: string | null;
   payment_status: string;
   shipping_address: ShippingAddress | null;
+  notes?: string | null;
   created_at: string;
+  updated_at?: string;
   order_items?: OrderItem[];
 }
 
