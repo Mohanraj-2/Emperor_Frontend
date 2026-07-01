@@ -5,15 +5,17 @@ const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
 const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!;
 
 // Fetch interceptor: wraps every Supabase HTTP request with the global loader.
-const loaderFetch = (input: RequestInfo | URL, init?: RequestInit) => {
-  if (typeof window !== 'undefined') {
-    const { start, stop } = useLoaderStore.getState();
-    start(500);
-    return fetch(input as RequestInfo, init).finally(() => stop());
+// The store applies a 300ms show-debounce, so fast requests (auth session refresh,
+// realtime heartbeat, etc.) never paint the overlay.
+const loaderFetch: typeof fetch = (input, init) => {
+  if (typeof window === 'undefined') {
+    return fetch(input as RequestInfo, init);
   }
-  return fetch(input as RequestInfo, init);
+  const { start, stop } = useLoaderStore.getState();
+  start();
+  return fetch(input as RequestInfo, init).finally(() => stop());
 };
 
 export const supabase = createClient(supabaseUrl, supabaseAnonKey, {
-  global: { fetch: loaderFetch as typeof fetch },
+  global: { fetch: loaderFetch },
 });

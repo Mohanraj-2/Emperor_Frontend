@@ -10,63 +10,40 @@ const MESSAGES = [
 ];
 
 export default function GlobalLoader() {
-  const isLoading = useLoaderStore((s) => s.isLoading);
+  // The store handles the 300ms show-debounce; isVisible is only true when
+  // a request has been in-flight longer than that threshold.
+  const isVisible = useLoaderStore((s) => s.isVisible);
   const [mounted, setMounted] = useState(false);
-  const [visible, setVisible] = useState(false);
-  const [fadingOut, setFadingOut] = useState(false);
   const [msgIndex, setMsgIndex] = useState(0);
 
-  // Mount guard — only render after hydration to avoid SSR/CSR mismatch
-  useEffect(() => {
-    setMounted(true);
-  }, []);
+  // Hydration guard — never render the overlay during SSR to avoid mismatch.
+  useEffect(() => setMounted(true), []);
 
-  // Handle fade in / fade out transitions
+  // Rotate the status message while the overlay is visible.
   useEffect(() => {
-    if (isLoading) {
-      setFadingOut(false);
-      setVisible(true);
-    } else if (visible) {
-      setFadingOut(true);
-      const t = setTimeout(() => {
-        setVisible(false);
-        setFadingOut(false);
-      }, 300);
-      return () => clearTimeout(t);
-    }
-  }, [isLoading, visible]);
-
-  // Rotate messages while loading
-  useEffect(() => {
-    if (!visible) return;
+    if (!isVisible) return;
     setMsgIndex(0);
     const interval = setInterval(() => {
       setMsgIndex((i) => (i + 1) % MESSAGES.length);
     }, 1500);
     return () => clearInterval(interval);
-  }, [visible]);
+  }, [isVisible]);
 
-  if (!mounted || !visible) return null;
+  if (!mounted || !isVisible) return null;
 
   return (
     <div
-      className={`empire-loader-overlay ${
-        fadingOut ? 'empire-loader-hidden' : ''
-      }`}
-      style={{
-        animation: fadingOut
-          ? 'loader-fade-out 0.3s ease-out forwards'
-          : 'loader-fade-in 0.3s ease-out forwards',
-      }}
+      className="empire-loader-overlay"
+      style={{ animation: 'loader-fade-in 0.3s ease-out forwards' }}
       aria-live="polite"
       role="status"
-      aria-busy={isLoading}
+      aria-busy="true"
     >
       <div className="flex flex-col items-center gap-6">
         <EmpireSpinner size={120} />
         <p
-          className="font-poppins text-sm text-navy-800 font-medium tracking-wide transition-opacity duration-300"
           key={msgIndex}
+          className="font-poppins text-sm text-navy-800 font-medium tracking-wide"
           style={{ animation: 'loader-fade-in 0.4s ease-out' }}
         >
           {MESSAGES[msgIndex]}
