@@ -200,7 +200,7 @@ export function OrderStatusChart() {
   );
 }
 
-export function ChartsSection() {
+export function ChartsSection({ onSectionClick }: { onSectionClick?: (status: string) => void }) {
   return (
     <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6">
       <div className="xl:col-span-2">
@@ -208,7 +208,9 @@ export function ChartsSection() {
       </div>
       <div className="space-y-6">
         <SalesTrendChart />
-        <OrderStatusChart />
+        <div onClick={onSectionClick ? () => onSectionClick('delivered') : undefined} className={onSectionClick ? 'cursor-pointer' : ''}>
+          <OrderStatusChart />
+        </div>
       </div>
     </div>
   );

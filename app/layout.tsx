@@ -1,6 +1,7 @@
 import './globals.css';
 import type { Metadata } from 'next';
 import StoreHydration from '@/components/StoreHydration';
+import { LoadingProvider } from '@/components/loaders';
 
 export const metadata: Metadata = {
   title: 'Empire Lifestyle – Premium Luxury Fashion',
@@ -18,7 +19,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       </head>
       <body className="font-poppins antialiased">
         <StoreHydration />
-        {children}
+        <LoadingProvider>
+          {children}
+        </LoadingProvider>
       </body>
     </html>
   );

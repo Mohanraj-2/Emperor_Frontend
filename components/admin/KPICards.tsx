@@ -66,9 +66,10 @@ interface KPIData {
 
 interface KPICardsProps {
   data?: KPIData;
+  onKpiClick?: (type: string, filter?: string) => void;
 }
 
-export default function KPICards({ data }: KPICardsProps) {
+export default function KPICards({ data, onKpiClick }: KPICardsProps) {
   const kpiData: KPIData = data || {
     totalRevenue: { value: '₹4,85,290', change: '+12.5%', isPositive: true },
     totalOrders: { value: '156', change: '+8.2%', isPositive: true },
@@ -108,7 +109,25 @@ export default function KPICards({ data }: KPICardsProps) {
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
       {cards.map((card) => (
-        <KPICard key={card.title} {...card} />
+        <div
+          key={card.title}
+          onClick={() => {
+            const typeMap: Record<string, string> = {
+              'Total Revenue': 'revenue',
+              'Total Orders': 'orders',
+              'Pending Orders': 'orders',
+              'Total Customers': 'customers',
+              'Products Sold': 'products',
+            };
+            const type = typeMap[card.title];
+            if (type && onKpiClick) {
+              onKpiClick(type, card.title === 'Pending Orders' ? 'pending' : undefined);
+            }
+          }}
+          className={onKpiClick ? 'cursor-pointer' : ''}
+        >
+          <KPICard {...card} />
+        </div>
       ))}
     </div>
   );
